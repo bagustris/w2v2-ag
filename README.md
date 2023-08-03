@@ -28,7 +28,7 @@ $ pip install -r requirements.txt
 To use the script, run the following command in your terminal:
 
 ```
-python predict_age_gender.py [-h] [-i INPUT]
+$ python predict_age_gender.py [-h] [-i INPUT]
 ```
 
 The script takes the following arguments:
