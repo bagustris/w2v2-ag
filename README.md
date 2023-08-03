@@ -34,7 +34,7 @@ $ python predict_age_gender.py [-h] [-i INPUT]
 The script takes the following arguments:
 
 - `-h`, `--help`: Show the help message and exit.
-- `-i INPUT`, `--input INPUT`: Path to input audio file. Default is `~/wav/yachinene.wav`.
+- `-i INPUT`, `--input INPUT`: Path to input audio file. Default is `./yachinene.wav`.
 
 The script outputs the predicted age and gender of the person in the audio file.
 

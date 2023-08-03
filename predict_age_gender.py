@@ -28,7 +28,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='Predict age and gender from an audio file. Download the example of audio file from: https://huggingface.co/spaces/innnky/nene-emotion.')
     parser.add_argument('-i', '--input', type=str, 
-                        default='~/wav/yachinene.wav', 
+                        default='./yachinene.wav', 
                         help='Path to input audio file')
     args = parser.parse_args()
 
