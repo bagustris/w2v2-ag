@@ -40,8 +40,10 @@ The script outputs the predicted age and gender of the person in the audio file.
 
 Here's an example usage of the script:
 
-```
-python predict_age_gender.py -i input.wav
+```bash
+$ python predict_age_gender.py -i input.wav
+Age: 21
+Gender or Child: female
 ```
 
 This will predict the age and gender of the person in the `input.wav` file.
