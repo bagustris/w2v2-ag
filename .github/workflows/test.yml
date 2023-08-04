@@ -7,6 +7,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cache/torch/hub/checkpoints
+          ~/models/w2v2-ag/cache
+        key: ${{ runner.os }}-predict-age-gender-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-predict-age-gender-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -15,6 +24,14 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Download and extract model file
+      run: |
+        cache_root=~/models/w2v2-ag/cache
+        model_root=~/models/w2v2-ag/model
+        if [ ! -f $model_root/model.onnx ]; then
+          archive_path=$(find $cache_root -name "w2v2-L-robust-6-age-gender*.zip")
+          unzip -q $archive_path -d $model_root
+        fi
     - name: Run script and test output
       run: |
         python predict_age_gender.py > output.txt

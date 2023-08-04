@@ -11,7 +11,7 @@ import argparse
 url = 'https://zenodo.org/record/7761387/files/w2v2-L-robust-6-age-gender.25c844af-1.1.1.zip'
 
 # make ~/models as root directory
-root_dir = os.path.expanduser('~/models')
+root_dir = os.path.expanduser('~/models/w2v2-ag')
 
 # create root directory if it does not exist
 if not os.path.exists(root_dir):
