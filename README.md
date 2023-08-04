@@ -1,5 +1,5 @@
 # Predict Age and Gender from Audio Files  
-Python CLI wrappers for Audeering public age and gender model (Original repo: https://github.com/audeering/w2v2-age-gender-how-to).
+This is a Python CLI wrappers for Audeering public age and gender model (Original repo: https://github.com/audeering/w2v2-age-gender-how-to).
 This script uses a pre-trained ONNX model to predict the age and gender of a person from an audio file.
 
 ## Installation
