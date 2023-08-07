@@ -1,6 +1,6 @@
 # Predict Age and Gender from Audio Files  
 This is a Python CLI wrappers for Audeering public age and gender model (Original repo: https://github.com/audeering/w2v2-age-gender-how-to).
-This script uses a pre-trained ONNX model to predict the age and gender of a person from an audio file.
+This script uses a pre-trained ONNX model to predict the age and gender of a person from an audio file and live microphone.
 
 ## Installation
 
@@ -28,7 +28,7 @@ $ pip install -r requirements.txt
 To use the script, run the following command in your terminal:
 
 ```
-$ python predict_age_gender.py [-h] [-i INPUT]
+$ python predict_ag_from_file.py [-h] [-i INPUT]
 ```
 
 The script takes the following arguments:
@@ -41,14 +41,18 @@ The script outputs the predicted age and gender of the person in the audio file.
 Here's an example usage of the script:
 
 ```bash
-$ python predict_age_gender.py -i input.wav
+# predicting age and gender from file
+$ python predict_ag_from_file.py -i input.wav
 Age: 21
 Gender or Child: female
+# predicting age and gender from live microphone
+$ python predict_ag_live.py
 ```
 
-This will predict the age and gender of the person in the `input.wav` file.
-
+The first will predict the age and gender of the person in the `input.wav` file.
 If you don't specify an input file, the script will use the default file `~/wav/yachinene.wav`.
+
+The latter command will predict the age and gender of the live microphone.
 
 ## License
 
