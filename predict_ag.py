@@ -46,7 +46,7 @@ def predict_ag(signal, sr) -> tuple:
     age = int(outs['logits_age'][0][0]*100)
     # print(f"Age: {age}")
 
-    # for gender, male ane female only
+    # for gender, male and female only
     gender_logits = list(outs['logits_gender'][0][:-1])
     if np.argmax(gender_logits) == 0:
         gender = "female"

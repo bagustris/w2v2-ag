@@ -17,7 +17,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run script and test output
       run: |
-        python predict_age_gender.py > output.txt
+        python predict_ag_from_file.py > output.txt
         if grep -q "Age: 21" output.txt && grep -q "Gender or Child: female" output.txt; then
           echo "Output is correct"
         else

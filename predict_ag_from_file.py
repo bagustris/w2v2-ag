@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-import os
-import audeer
-import audonnx
-import numpy as np
 import audiofile
 import audresample
 import argparse
