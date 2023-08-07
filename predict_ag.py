@@ -38,8 +38,7 @@ def predict_ag(signal, sr) -> tuple:
     model = audonnx.load(model_root)
 
     # assure sr = 16kHz, if not raise error
-    if sr != 16000:
-        raise ValueError("Sampling rate must be 16kHz.")
+    assert sr == 16000, "Sampling rate must be 16kHz."
     outs = model(signal, 16000)
 
     # print logits age converted to integer
