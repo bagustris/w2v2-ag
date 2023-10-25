@@ -20,8 +20,10 @@ if __name__ == "__main__":
     # convert to 16kHz if sr != 16kHz
     if sr != 16000:
         signal = audresample.resample(signal, sr, 16000)
-    age, gender = predict_ag(signal, 16000)
+    age, gender_prob = predict_ag(signal, 16000)
 
+    # get gender with highest probability
+    gender = max(gender_prob, key=lambda k: gender_prob[k])
     # print logits age converted to integer
     print(f"Age: {age}")    
     print(f"Gender: {gender}")
