@@ -18,7 +18,7 @@ jobs:
     - name: Run script and test output
       run: |
         python predict_ag_from_file.py > output.txt
-        if grep -q "Age: 21" output.txt && grep -q "Gender: {female'}" output.txt; then
+        if grep -q "Age: 21" output.txt && grep -q "Gender: {'female'}" output.txt; then
           echo "Output is correct"
         else
           echo "Output is incorrect"
