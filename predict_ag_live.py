@@ -3,9 +3,12 @@
 import argparse
 import queue
 import sys
+
 import numpy as np
 import sounddevice as sd
+
 from predict_ag import predict_ag
+
 
 def int_or_str(text):
     """Helper function for argument parsing."""
@@ -83,7 +86,8 @@ if __name__ == "__main__":
                         # predict age and gender from 5 
                     signal = data[:, 0].astype(np.float32)
                     print(f"Data of {signal.shape[0]/args.samplerate} seconds")
-                    age, gender = predict_ag(signal, args.samplerate)
+                    age, gender_prob = predict_ag(signal, args.samplerate)
+                    gender = max(gender_prob, key=lambda k: gender_prob[k])
                     print(f"Age: {age}")
                     print(f"Gender: {gender}")
                 except KeyboardInterrupt:
