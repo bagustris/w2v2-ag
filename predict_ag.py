@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+
 import audeer
 import audonnx
 import numpy as np
@@ -47,10 +48,13 @@ def predict_ag(signal, sr) -> tuple:
 
     # for gender, male and female only
     gender_logits = list(outs['logits_gender'][0][:-1])
-    if np.argmax(gender_logits) == 0:
-        gender = "female"
-    else:
-        gender = "male"
+    
+    # output dictionary of {female: probility, male: probability}
+    gender = {'female': float(gender_logits[0]), 'male': float(gender_logits[1])}
+    # if np.argmax(gender_logits) == 0:
+    #     gender = "female"
+    # else:
+    #     gender = "male"
     # else:
     #     gender = "child"    
     # # print(f"Gender or Child: {gender}")

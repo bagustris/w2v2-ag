@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
+import argparse
+
 import audiofile
 import audresample
-import argparse
+
 from predict_ag import predict_ag
 
 if __name__ == "__main__":
