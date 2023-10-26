@@ -7,6 +7,7 @@ from cProfile import label
 import audiofile
 import audresample
 import gradio as gr
+import numpy as np
 
 from predict_ag import predict_ag
 
@@ -15,12 +16,22 @@ def classify_speech(file, recording):
     """Function that takes in an audio file and returns the predicted age and
     gender of the speaker."""
     if file:
-        audio, sr = audiofile.read(file)
+        signal, sr = audiofile.read(file)
         if sr != 16000:
-            audio = audresample.resample(audio, sr, 16000)
-        age, gender = predict_ag(audio, 16000)
-        return age, gender
+            signal = audresample.resample(signal, sr, 16000)
+    
+    if recording:
+        # record sound until stop button is pressed
+        sr, signal = recording
+        # convert signal (int) double to tensor (float) mono
+        signal = signal[:,0].astype(np.float32)
 
+    age, gender = predict_ag(signal, 16000)
+    return age, gender
+
+# Clears all inputs and outputs when the user clicks "Clear" button
+def clear_inputs_and_outputs():
+    return [None, None, None, None]
 
 # audiofile_input = gr.inputs.Audio(type="filepath", label="Upload Audio File")
 # demo = gr.Interface(
@@ -60,6 +71,14 @@ if __name__ == "__main__":
                 output_gender = gr.Label(label="Gender")
 
 
+        gr.Examples(
+            ["./yachinene.wav"],
+            [file_input],
+            # cache_examples=True,
+            label="Example Audio File"
+        )
+
+
         # Credits
         with gr.Row():
             gr.Markdown(
@@ -75,7 +94,7 @@ if __name__ == "__main__":
 
         # when clear button is clicked, clear the inputs
         clear_button.click(
-            fn=gr.update,
+            fn=clear_inputs_and_outputs,
             inputs=[],
             outputs=[file_input, mic_input, output_age, output_gender]
         )
@@ -87,4 +106,7 @@ if __name__ == "__main__":
             outputs=[output_age, output_gender]
         )
 
-        demo.launch(debug=True, share=True)
+
+        demo.launch(debug=True, share=False)
+
+        demo.launch(debug=True, share=False)
